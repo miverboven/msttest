@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Examples</title>
+</head>
+<body>
+
+<h3>These are all the currently registered dishes:</h3>
+
+<ul>
+    {{#dishList}}
+        <li>{{name}} ({{calories}} calories)</li>
+    {{/dishList}}
+</ul>
+
+<h3>Select a dish from the following list:</h3>
+
+<!--List of hyperlinks-->
+<ul>
+    {{#dishList}}
+        <li><a href="/dishdetails?dishIndex={{id}}">{{name}}</a></li>
+    {{/dishList}}
+</ul>
+
+<h3>Or select a dish from the dropdown list:</h3>
+
+<!--Dropdown list-->
+<form action="/dishdetails">
+    <select name="dishIndex">
+        <option value="-1">Choose a dish</option>
+        {{#dishList}}
+            <option value="{{id}}">{{name}}</option>
+        {{/dishList}}
+    </select>
+    <input type="submit" value="Select" name="selectbutton"/>
+</form>
+
+<h3>Or select a dish using these radiobuttons:</h3>
+
+<!--Selectable radiobuttons-->
+<form action="/dishdetails">
+    {{#dishList}}
+        <p>
+            <input type="radio" name="dishIndex" value="{{id}}" id="{{id}}"/>
+            <label for="{{id}}">{{name}}</label>
+        </p>
+    {{/dishList}}
+    <input type="submit" value="Select" name="selectbutton"/>
+</form>
+
+<p><a href="/">Back to the homepage</a></p>
+
+</body>
+</html>
